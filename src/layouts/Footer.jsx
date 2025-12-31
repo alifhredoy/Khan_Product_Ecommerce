@@ -17,7 +17,7 @@ import { FaRegCopyright } from "react-icons/fa";
 
 const Footer = () => {
     return (
-        <footer className='bg-black pt-[80px]'>
+        <footer className='bg-black pt-20 pb-6'>
             <Container>
                 <Flex>
                     <div className='w-3/12 '>
@@ -28,7 +28,7 @@ const Footer = () => {
                             <input className='border border-white w-full py-3 pl-4 pr-8 text-sm placeholder:text-xs text-white font-normal font-pop' type="text" placeholder='What are you looking for?' /><GoPaperAirplane className='absolute top-[15px] right-2 text-xl text-white' />
                         </div>
                     </div>
-                    <div className='w-9/12 justify-between flex'>
+                    <div className='w-9/12 justify-between flex pb-[60px]'>
                         <div>
                             <strong className='text-xl text-white font-pop font-medium'>Support</strong>
                             <ul className='flex flex-col gap-y-5 mt-6'>
@@ -74,12 +74,15 @@ const Footer = () => {
 
                     </div>
                 </Flex>
-
-                <div className='relative pt-[60px] pb-5'>
-                    <FaRegCopyright className='absolute left-[405px] text-xl text-white' />
-                    <p className='text-center text-white text-base font-pop font-normal'>Copyright Rimel 2022. All right reserved</p>
-                </div>
             </Container>
+
+
+           <Flex className='gap-x-1 justify-center items-center border-t border-[#ffffff66] pt-4 '>
+             <FaRegCopyright className='text-[#ffffff66] text-xl' />
+            <p className='text-[#ffffff66] font-normal font-pop text-base'>Copyright Rimel 2022. All right reserved</p>
+           </Flex>
+
+
         </footer>
     )
 }
