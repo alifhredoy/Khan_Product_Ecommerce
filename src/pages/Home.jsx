@@ -1,14 +1,18 @@
 import React from 'react'
+import Card from '../components/Card'
+import Container from '../components/Container'
 
 
 
 
 const Home = () => {
   return (
-    <div>
-      <h1>home</h1>
-     
-    </div>
+    <section>
+      <Container>
+        <h1 className='text-5xl'>home</h1>
+        <Card />
+      </Container>
+    </section>
   )
 }
 
