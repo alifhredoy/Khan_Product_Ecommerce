@@ -1,18 +1,23 @@
 import React from 'react'
-import Card from '../components/Card'
-import Container from '../components/Container'
+
+import Banner from '../layouts/Banner'
+import TodayProducts from '../layouts/TodayProducts'
+
+
+
+
 
 
 
 
 const Home = () => {
   return (
-    <section>
-      <Container>
-        <h1 className='text-5xl'>home</h1>
-        <Card />
-      </Container>
-    </section>
+    <>
+    <Banner/>
+    <TodayProducts/>
+    
+    
+    </>
   )
 }
 
