@@ -3,9 +3,20 @@ import Container from '../components/Container'
 import Flex from '../components/Flex'
 import CategoryList from '../components/CategoryList'
 import Image from '../components/Image'
-import BannerImage from '../assets/bannerone.jpg'
+import BannerOne from '../assets/bannerone.jpg'
+import Slider from "react-slick";
 
 const Banner = () => {
+  var settings = {
+    arrows:false,
+    autoplay:true,
+    autoplaySpeed:2000,
+
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   return (
     <section className='pt-10 pb-[140px]'>
       <Container>
@@ -21,13 +32,36 @@ const Banner = () => {
               <CategoryList text="Baby’s & Toys" />
               <CategoryList text="Groceries & Pets" />
               <CategoryList text="Health & Beauty" />
-              
+
             </ul>
-            
+
 
           </div>
           <div className='w-9/12'>
-          <Image src={BannerImage} alt="Banner Image"/>
+            <Slider {...settings}>
+              <div>
+                <Image src={BannerOne} alt="Banner Image" />
+              </div>
+              <div>
+                <Image src={BannerOne} alt="Banner Image" />
+              </div>
+              <div>
+                <Image src={BannerOne} alt="Banner Image" />
+              </div>
+              <div>
+                <Image src={BannerOne} alt="Banner Image" />
+              </div>
+              <div>
+                <Image src={BannerOne} alt="Banner Image" />
+              </div>
+              <div>
+                <Image src={BannerOne} alt="Banner Image" />
+              </div>
+              
+            
+
+            </Slider>
+
           </div>
         </Flex>
       </Container>
