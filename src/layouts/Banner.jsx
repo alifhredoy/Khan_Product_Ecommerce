@@ -4,6 +4,9 @@ import Flex from '../components/Flex'
 import CategoryList from '../components/CategoryList'
 import Image from '../components/Image'
 import BannerOne from '../assets/bannerone.jpg'
+import BannerTwo from '../assets/bannertwo.jpg'
+import BannerThree from '../assets/bannerthree.jpg'
+import BannerFour from '../assets/bannerfour.jpg'
 import Slider from "react-slick";
 
 const Banner = () => {
@@ -43,23 +46,15 @@ const Banner = () => {
                 <Image src={BannerOne} alt="Banner Image" />
               </div>
               <div>
-                <Image src={BannerOne} alt="Banner Image" />
+                <Image src={BannerTwo} alt="Banner Image" />
               </div>
               <div>
-                <Image src={BannerOne} alt="Banner Image" />
+                <Image src={BannerThree} alt="Banner Image" />
               </div>
               <div>
-                <Image src={BannerOne} alt="Banner Image" />
+                <Image src={BannerFour} alt="Banner Image" />
               </div>
-              <div>
-                <Image src={BannerOne} alt="Banner Image" />
-              </div>
-              <div>
-                <Image src={BannerOne} alt="Banner Image" />
-              </div>
-              
-            
-
+           
             </Slider>
 
           </div>
