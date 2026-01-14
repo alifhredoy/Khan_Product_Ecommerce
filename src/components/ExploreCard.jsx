@@ -1,0 +1,46 @@
+import React from 'react'
+import Image from '../components/Image'
+
+import Flex from '../components/Flex'
+import { FaRegHeart } from "react-icons/fa";
+
+import { LuEye } from "react-icons/lu";
+import { FaStar } from "react-icons/fa";
+
+
+
+
+const ExploreCard = ({ image, title, saleprice, className }) => {
+    return (
+        <div className={`w-[270px] pb-[60px] group ${className}`}>
+            <Flex className='relative overflow-hidden w-full h-[250px] justify-center items-center  bg-[#F5F5F5] rounded-[4px]'>
+                <Image src={image} alt="product" />
+
+
+                <li className='absolute top-4 right-3 list-none bg-white w-[34px] h-[34px] rounded-full flex items-center justify-center'><FaRegHeart className='text-base' /></li>
+                <li className='absolute top-14 right-3 list-none bg-white w-[34px] h-[34px] rounded-full flex items-center justify-center'><LuEye className='text-base' /></li>
+                <div className='cursor-pointer bg-black py-2 w-full absolute -bottom-[40px] group-hover:bottom-0 duration-300 left-0 text-center rounded-b'>
+                    <p className='text-base text-white font-medium font-pop'>Add To Cart</p>
+                </div>
+
+            </Flex>
+
+            <div>
+                <h4 className='text-base text-black font-medium font-pop pt-4 pb-2'>{title}</h4>
+                <Flex className="items-center pt-2 gap-x-2">
+                    <p className='text-base text-[#DB4444] font-medium font-pop'>${saleprice}</p>
+                    <ul className='flex gap-x-1 !p-0'>
+                        <li><FaStar className='text-[#FFAD33] list-none text-sm' /></li>
+                        <li><FaStar className='text-[#FFAD33] list-none text-sm' /></li>
+                        <li><FaStar className='text-[#FFAD33] list-none text-sm' /></li>
+                        <li><FaStar className='text-[#FFAD33] list-none text-sm' /></li>
+                        <li><FaStar className='list-none text-sm' /></li>
+                    </ul>
+                    <p className='text-[#00000080] text-xs font-pop font-normal'>(35)</p>
+                </Flex>
+            </div>
+        </div>
+    )
+}
+
+export default ExploreCard

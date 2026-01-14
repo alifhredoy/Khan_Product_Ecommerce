@@ -9,29 +9,61 @@ import { BsSmartwatch } from "react-icons/bs";
 import { CiCamera } from "react-icons/ci";
 import { CiHeadphones } from "react-icons/ci";
 import { LuGamepad } from "react-icons/lu";
-import Flex from '../components/Flex';
 
+import { CiSpeaker } from "react-icons/ci";
 
-
-
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import NextArrow from '../components/NextArrow'
+import PrevArrow from '../components/PrevArrow'
 
 
 
 const Catergory = () => {
+    var settings = {
+        arrows: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 6,
+        slidesToScroll: 1,
+        nextArrow: <NextArrow />,
+        prevArrow: <PrevArrow />
+    };
     return (
-        <section>
+        <section className='pb-[70px]'>
             <Container>
-                <SubHeading text='Categories' />
-                <Heading className='pt-6 pb-8' text="Browse By Category" />
-                <Flex className='justify-between pb-[70px]'>
-                    <CategoryBox text="Phones" icon={<IoPhonePortraitOutline />} />
-                    <CategoryBox text="Computers" icon={<HiOutlineComputerDesktop />} />
-                    <CategoryBox text="SmartWatch" icon={<BsSmartwatch />} />
-                    <CategoryBox text="Camera" icon={<CiCamera />} />
-                    <CategoryBox text="HeadPhones" icon={<CiHeadphones />} />
-                    <CategoryBox text="Gaming" icon={<LuGamepad />} />
-                </Flex>
-                <hr className='mb-[70px] border-[#0000004d]' />
+              <div className='border-b border-[#9a9a9a3d] pb-[70px]'>
+                  <SubHeading text='Categories' />
+                <Heading className='pt-6 pb-[60px]' text="Browse By Category" />
+                <Slider {...settings}>
+
+                    <div>
+                        <CategoryBox text="Phones" icon={<IoPhonePortraitOutline />} />
+                    </div>
+
+
+                    <div>
+                        <CategoryBox text="Computers" icon={<HiOutlineComputerDesktop />} />
+                    </div>
+                    <div>
+                        <CategoryBox text="SmartWatch" icon={<BsSmartwatch />} />
+                    </div>
+                    <div>
+                        <CategoryBox text="Camera" icon={<CiCamera />} />
+                    </div>
+                    <div>
+                        <CategoryBox text="HeadPhones" icon={<CiHeadphones />} />
+                    </div>
+                    <div>
+                        <CategoryBox text="Gaming" icon={<LuGamepad />} />
+                    </div>
+                    <div>
+                        <CategoryBox text="Speaker" icon={<CiSpeaker />} />
+                    </div>
+
+                </Slider>
+              </div>
+
             </Container>
         </section>
     )
