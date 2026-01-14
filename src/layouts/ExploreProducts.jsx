@@ -29,7 +29,7 @@ const TodayProducts = () => {
   return (
     <section className='pb-[168px]'>
       <Container>
-        <div className='border-b border-[#9a9a9a3d] pb-[60px]'>
+        
           <SubHeading text="Our Products" />
           <Heading className='pt-6 pb-[60px]' text="Explore Our Products" />
           <Slider {...settings}>
@@ -65,7 +65,6 @@ const TodayProducts = () => {
           <div className='text-center'>
             <Button text="View All Products" />
           </div>
-        </div>
       </Container>
     </section>
   )

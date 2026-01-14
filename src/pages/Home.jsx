@@ -6,6 +6,7 @@ import Catergory from '../layouts/Catergory'
 import BestProducts from '../layouts/BestProducts'
 import Promotion from '../layouts/Promotion'
 import ExploreProducts from '../layouts/ExploreProducts'
+import NewArrival from '../layouts/NewArrival'
 
 
 
@@ -24,6 +25,7 @@ const Home = () => {
     <BestProducts/>
     <Promotion/>
     <ExploreProducts/>
+    <NewArrival/>
     
     
     
