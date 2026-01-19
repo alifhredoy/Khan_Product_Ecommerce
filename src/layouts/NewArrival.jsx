@@ -11,6 +11,7 @@ import arrivalfour from '../assets/arrivalfour.png'
 import serviceone from '../assets/serviceone.png'
 import servicetwo from '../assets/servicetwo.png'
 import servicethree from '../assets/servicethree.png'
+import { Link } from 'react-router-dom'
 
 const NewArrival = () => {
     return (
@@ -19,44 +20,44 @@ const NewArrival = () => {
                 <SubHeading text="Featured" />
                 <Heading className="pt-6 pb-[60px]" text="New Arrival" />
 
-                <div className="grid grid-cols-4 grid-rows-2 gap-7 pb-[140px] ">
 
-                    <div className="col-start-1 col-end-3 row-start-1 row-end-3">
-                        <Image src={arrivalone} className="w-full" />
+                <div className='one pb-[140px]'>
+                    <div className='two'>
+                        <Link>
+                            <Image src={arrivalone} />
+                        </Link>
+                    </div>
+                    <div className='two'>
+                        <Image src={arrivaltwo} />
+                    </div>
+                    <div className='two'>
+                        <Image src={arrivalthree} />
+                    </div>
+                    <div className='two'>
+                        <Image src={arrivalfour} />
                     </div>
 
 
-                    <div className="col-start-3 col-end-5 row-start-1 row-end-2">
-                        <Image src={arrivaltwo} className="w-full" />
-                    </div>
 
-
-                    <div className="col-start-3 col-end-4 row-start-2 row-end-3">
-                        <Image src={arrivalthree} className="w-full" />
-                    </div>
-
-
-                    <div className="col-start-4 col-end-5 row-start-2 row-end-3">
-                        <Image src={arrivalfour} className="w-full" />
-                    </div>
                 </div>
+
 
                 <Flex className='justify-around'>
                     <div>
-                    <Image className='pl-[84px]' src={serviceone}/>
-                    <h4 className="text-xl text-black fomt-pop font-semibold pt-6 pb-2">FREE AND FAST DELIVERY</h4>
-                    <p className='text-sm text-black font-pop font-normal'>Free delivery for all orders over $140</p>
-                </div>
-                <div>
-                    <Image className='pl-[84px]' src={servicetwo}/>
-                    <h4 className="text-xl text-black fomt-pop font-semibold pt-6 pb-2">24/7 CUSTOMER SERVICE</h4>
-                    <p className='text-sm text-black font-pop font-normal'>Friendly 24/7 customer support</p>
-                </div>
-                <div>
-                    <Image className='pl-[84px]' src={servicethree}/>
-                    <h4 className="text-xl text-black fomt-pop font-semibold pt-6 pb-2">MONEY BACK GUARANTEE</h4>
-                    <p className='text-sm text-black font-pop font-normal'>We reurn money within 30 days</p>
-                </div>
+                        <Image className='pl-[84px]' src={serviceone} />
+                        <h4 className="text-xl text-black fomt-pop font-semibold pt-6 pb-2">FREE AND FAST DELIVERY</h4>
+                        <p className='text-sm text-black font-pop font-normal'>Free delivery for all orders over $140</p>
+                    </div>
+                    <div>
+                        <Image className='pl-[84px]' src={servicetwo} />
+                        <h4 className="text-xl text-black fomt-pop font-semibold pt-6 pb-2">24/7 CUSTOMER SERVICE</h4>
+                        <p className='text-sm text-black font-pop font-normal'>Friendly 24/7 customer support</p>
+                    </div>
+                    <div>
+                        <Image className='pl-[84px]' src={servicethree} />
+                        <h4 className="text-xl text-black fomt-pop font-semibold pt-6 pb-2">MONEY BACK GUARANTEE</h4>
+                        <p className='text-sm text-black font-pop font-normal'>We reurn money within 30 days</p>
+                    </div>
                 </Flex>
             </Container>
         </section>
