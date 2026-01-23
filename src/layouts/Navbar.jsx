@@ -22,7 +22,7 @@ const Navbar = () => {
                     </div>
                     <div className='w-5/12 '>
                         <ul className='flex gap-x-12'>
-                            <Link to='/home'><ListItem text="Home" /></Link>
+                            <Link to='/'><ListItem text="Home" /></Link>
                             <ListItem text="Contact" />
                             <Link to='/about'><ListItem text="About" /></Link>
                             <Link to='/signup'><ListItem text="Sign Up" /></Link>
