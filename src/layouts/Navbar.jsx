@@ -8,6 +8,7 @@ import { IoSearchOutline } from "react-icons/io5";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { IoCartOutline } from "react-icons/io5";
 import { Link } from 'react-router-dom'
+import { TbUser } from 'react-icons/tb'
 
 
 
@@ -35,6 +36,9 @@ const Navbar = () => {
                             </div>
                             <IoIosHeartEmpty className='text-xl'/>
                             <IoCartOutline className='text-xl'/>
+                            <div className='w-[25px] h-[25px] bg-red-500 rounded-full flex justify-center items-center'>
+                                <TbUser className=' text-white'/>
+                            </div>
                         </Flex>
 
 
