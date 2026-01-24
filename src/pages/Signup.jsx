@@ -13,7 +13,7 @@ const Signup = () => {
         <Flex>
           <div className='flex items-center justify-between'>
             <div className='w-7/12'>
-          <Image src={login} alt="login"/>
+          <Image src={login} alt="signup"/>
           </div>
           <div className='w-4/12'>
           <h2 className='text-4xl text-black font-inter font-medium pb-[24px]'>Create an account</h2>
