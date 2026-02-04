@@ -74,7 +74,7 @@ const Login = () => {
                <Flex className='justify-center pt-[32px]'>
                 <p className='text-base text-[#4D4D4D] font-pop font-normal'>New here? Let’s get you started.</p>
                 <div className='pl-4'>
-                  <Link to='/signup'><p className='text-base text-[#4D4D4D] font-medium font-pop border-0 border-b'>Sign In</p></Link>
+                  <Link to='/signup'><p className='text-base text-[#4D4D4D] font-medium font-pop border-0 border-b'>Sign Up</p></Link>
                 </div>
               </Flex>
 
