@@ -6,8 +6,13 @@ import login from '../assets/login.png'
 import Button from '../components/Button'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { ToastContainer, toast } from 'react-toastify';
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { Link } from 'react-router-dom'
+
 
 const Login = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
   const auth = getAuth();
   let [email, setEmail] = useState()
   let [password, setPassword] = useState()
@@ -20,11 +25,11 @@ const Login = () => {
       .catch((error) => {
         const errorCode = error.code;
         console.log(errorCode);
-        if(errorCode.includes("auth/invalid-credential")){
+        if (errorCode.includes("auth/invalid-credential")) {
           toast.error("Invalid email or password")
         }
-        
-       
+
+
       });
 
 
@@ -44,12 +49,33 @@ const Login = () => {
               <div className='pb-[40px]'>
                 <input onChange={(e) => setEmail(e.target.value)} type="text" placeholder='Email or Phone Number' className='w-full border-0 border-b border-black py-2 placeholder:text-[18px] font-pop font-normal focus:outline-none' />
               </div>
-              <input onChange={(e) => setPassword(e.target.value)} type="password" placeholder='Password' className='w-full border-0 border-b border-black py-2 placeholder:text-[18px] font-pop font-normal focus:outline-none' />
+              <div className="relative">
+                <input
+                  onChange={(e) => setPassword(e.target.value)}
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Password"
+                  className="w-full border-0 border-b border-black py-2 pr-10 placeholder:text-[18px] font-pop font-normal focus:outline-none"
+                />
+
+                <div
+                  className="absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer text-xl text-gray-600"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+                </div>
+              </div>
+
               <Flex className='items-center pt-[40px]'>
                 <div onClick={handleLogin}>
                   <Button text="Log In" />
                 </div>
                 <p className='text-base text-[#DB4444] font-normal font-pop pl-[87px]'>Forget Password?</p>
+              </Flex>
+               <Flex className='justify-center pt-[32px]'>
+                <p className='text-base text-[#4D4D4D] font-pop font-normal'>New here? Let’s get you started.</p>
+                <div className='pl-4'>
+                  <Link to='/signup'><p className='text-base text-[#4D4D4D] font-medium font-pop border-0 border-b'>Sign In</p></Link>
+                </div>
               </Flex>
 
 
