@@ -14,7 +14,7 @@ import { FcGoogle } from 'react-icons/fc'
 
 
 const Signup = () => {
-  let patten = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+  let pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
   let lowercase = /^(?=.*[a-z])/
   let uppercase = /(?=.*[A-Z])/
   let digit = /(?=.*\d)/
@@ -59,7 +59,7 @@ const Signup = () => {
     } if (!email) {
       setEmailError("Please Enter your Email")
     } else {
-      if (!patten.test(email)) {
+      if (!pattern.test(email)) {
         setEmailError("Enter Your Vaild Email");
 
       }
@@ -86,13 +86,13 @@ const Signup = () => {
     }
 
 
-    if (name && email && patten.test(email) && password && lowercase.test(password) && uppercase.test(password) && digit.test(password) && special.test(password) && min.test(password)) {
+    if (name && email && pattern.test(email) && password && lowercase.test(password) && uppercase.test(password) && digit.test(password) && special.test(password) && min.test(password)) {
 
 
 
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          toast.success("Registration Successfully");
+          toast.success("Registration Successful");
 
 
         })
@@ -158,23 +158,30 @@ const Signup = () => {
                 }
 
               </div>
-              <div className='relative'>
-                <input onChange={handlePassword} type={eye ?
-                  "text" : "password"} placeholder='Password' className='w-full border-0 border-b border-black py-2 placeholder:text-[18px] font-pop font-normal focus:outline-none' />
-                <div onClick={handleEye} className='absolute top-1/2 -translate-y-1/2 right-0'>
-
-                  {
-                    eye ?
-                      <FiEye />
-                      :
-                      <FiEyeOff />
-                  }
-
+             
+              <div className='pb-10'> 
+                <div className='relative'> 
+                  <input
+                    onChange={handlePassword}
+                    type={eye ? "text" : "password"}
+                    placeholder='Password'
+                    className='w-full border-0 border-b border-black py-2 placeholder:text-[18px] font-pop font-normal focus:outline-none'
+                  />
+                  <div
+                    onClick={handleEye}
+                    className='absolute top-1/2 -translate-y-1/2 right-0 cursor-pointer'
+                  >
+                    {eye ? <FiEye /> : <FiEyeOff />}
+                  </div>
                 </div>
-                {
-                  passworderror && <p className='bg-red-500 text-white py-1 px-2 rounded-md mt-2 '>{passworderror}</p>
-                }
+               
+                {passworderror && (
+                  <p className='bg-red-500 text-white py-1 px-2 rounded-md mt-2'>
+                    {passworderror}
+                  </p>
+                )}
               </div>
+             
 
               <div onClick={handleSignUp} className='pt-10 pb-4'>
                 <Button className='w-full' text="Create Account" />
