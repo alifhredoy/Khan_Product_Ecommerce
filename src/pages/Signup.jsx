@@ -119,12 +119,10 @@ const Signup = () => {
       .then((result) => {
         navigate("/")
 
-
-
       }).catch((error) => {
         const errorCode = error.code;
         if (errorCode) {
-          console.log("some error here");
+          toast.error("Some error occurred");
 
         }
 
