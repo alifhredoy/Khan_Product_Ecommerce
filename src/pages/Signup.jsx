@@ -5,89 +5,188 @@ import Image from '../components/Image'
 import login from '../assets/login.png'
 import Button from '../components/Button'
 import googleicon from '../assets/googleicon.png'
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+
 import { ToastContainer, toast } from 'react-toastify';
-import { Link } from 'react-router-dom'
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { FcGoogle } from "react-icons/fc";
+import { Link, useNavigate } from 'react-router-dom'
+import { FiEye, FiEyeOff } from 'react-icons/fi'
+import { FcGoogle } from 'react-icons/fc'
 
 
 const Signup = () => {
-  const [showPassword, setShowPassword] = useState(false);
+  let patten = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+  let lowercase = /^(?=.*[a-z])/
+  let uppercase = /(?=.*[A-Z])/
+  let digit = /(?=.*\d)/
+  let special = /(?=.*[@$!%*?&])/
+  let min = /[A-Za-z\d@$!%*?&]{8,}$/
+
 
   const auth = getAuth();
+  let [eye, setEye] = useState(false)
   let [name, setName] = useState("")
   let [email, setEmail] = useState("")
   let [password, setPassword] = useState("")
+  let [nameerror, setNameError] = useState("")
+  let [emailerror, setEmailError] = useState("")
+  let [passworderror, setPasswordError] = useState("")
 
+  let navigate = useNavigate()
+  let handleEye = () => {
+    setEye(!eye)
 
+  }
+  let handleName = (e) => {
+    setName(e.target.value)
+    setNameError("")
+  }
+  let handleEmail = (e) => {
+    setEmail(e.target.value)
+    setEmailError("")
+  }
+  let handlePassword = (e) => {
+    setPassword(e.target.value)
+    setPasswordError("")
+  }
+
+  // this function for sign in
   let handleSignUp = () => {
 
+    if (!name) {
+      setNameError("Please enter your name");
 
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        toast.success("Registration Successful");
 
-      })
-      .catch((error) => {
+    } if (!email) {
+      setEmailError("Please Enter your Email")
+    } else {
+      if (!patten.test(email)) {
+        setEmailError("Enter Your Vaild Email");
+
+      }
+    }
+
+
+    if (!password) {
+      setPasswordError("Please Enter your Password");
+
+    } else if (!lowercase.test(password)) {
+      setPasswordError("Enter atleast one lowercase letter");
+
+    } else if (!uppercase.test(password)) {
+      setPasswordError("Enter atleast one uppercase letter");
+
+    } else if (!digit.test(password)) {
+      setPasswordError("Enter atleast one Digit");
+
+    } else if (!special.test(password)) {
+      setPasswordError("Enter atleast one speciel character");
+
+    } else if (!min.test(password)) {
+      setPasswordError("Password must be at least 8 characters long")
+    }
+
+
+    if (name && email && patten.test(email) && password && lowercase.test(password) && uppercase.test(password) && digit.test(password) && special.test(password) && min.test(password)) {
+
+
+
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          toast.success("Registration Successfully");
+
+
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode);
+          if (errorCode.includes("auth/email-already-in-use")) {
+            toast.error("Email Alredy in Use")
+          } if (errorCode.includes("auth/weak-password")) {
+            toast.error("Password must be at least 6 characters long")
+          }
+        });
+
+    }
+
+
+  }
+  // this function for google
+
+  let handleGoogle = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        navigate("/")
+
+
+
+      }).catch((error) => {
         const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode);
-        if (errorCode.includes("auth/email-already-in-use")) {
-          toast.error("Email already in use")
-        } if (errorCode.includes("auth/weak-password")) {
-          toast.error("Your password must be at least 6 characters long.")
+        if (errorCode) {
+          console.log("some error here");
+
         }
-
-
 
       });
 
   }
 
+
+
   return (
-    <section className='pt-[76px] pb-[140px]'>
+    <section className='pt-19 pb-35'>
       <Container>
         <Flex>
           <div className='flex items-center justify-between'>
             <div className='w-7/12'>
-              <Image src={login} alt="signup" />
+              <Image src={login} alt="Signup" />
             </div>
             <div className='w-4/12'>
-              <h2 className='text-4xl text-black font-inter font-medium pb-[24px]'>Create an account</h2>
-              <h3 className='text-base text-black font-normal font-pop pb-[48px]'>Enter your details below</h3>
-              <div className='pb-[40px]'>
-                <input onChange={(e) => setName(e.target.value)} type="text" placeholder='Name' className='w-full border-0 border-b border-black py-2 placeholder:text-[18px] font-pop font-normal focus:outline-none' />
+              <h2 className='text-4xl text-black font-inter font-medium pb-6'>Create an account</h2>
+              <h3 className='text-base text-black font-normal font-pop pb-12'>Enter your details below</h3>
+              <div className='pb-10'>
+                <input onChange={handleName} type="text" placeholder='Name' className='w-full border-0 border-b border-black py-2 placeholder:text-[18px] font-pop font-normal focus:outline-none' />
+                {
+                  nameerror && <p className='bg-red-500 text-white py-1 px-2 rounded-md mt-2 '>{nameerror}</p>
+                }
               </div>
-              <div className='pb-[40px]'>
-                <input onChange={(e) => setEmail(e.target.value)} type="text" placeholder='Email or Phone Number' className='w-full border-0 border-b border-black py-2 placeholder:text-[18px] font-pop font-normal focus:outline-none ' />
-              </div>
-              <div className="relative">
-                <input
-                  onChange={(e) => setPassword(e.target.value)}
-                  type={showPassword ? "text" : "password"}
-                  placeholder="Password"
-                  className="w-full border-0 border-b border-black py-2 pr-10 placeholder:text-[18px] font-pop font-normal focus:outline-none"
-                />
+              <div className='pb-10 '>
+                <input onChange={handleEmail} type="text" placeholder='Email or Phone Number' className='w-full border-0 border-b border-black py-2 placeholder:text-[18px] font-pop font-normal focus:outline-none ' />
+                {
+                  emailerror && <p className='bg-red-500 text-white py-1 px-2 rounded-md mt-2 '>{emailerror}</p>
+                }
 
-                <div
-                  className="absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer text-xl text-gray-600"
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+              </div>
+              <div className='relative'>
+                <input onChange={handlePassword} type={eye ?
+                  "text" : "password"} placeholder='Password' className='w-full border-0 border-b border-black py-2 placeholder:text-[18px] font-pop font-normal focus:outline-none' />
+                <div onClick={handleEye} className='absolute top-1/2 -translate-y-1/2 right-0'>
+
+                  {
+                    eye ?
+                      <FiEye />
+                      :
+                      <FiEyeOff />
+                  }
+
                 </div>
+                {
+                  passworderror && <p className='bg-red-500 text-white py-1 px-2 rounded-md mt-2 '>{passworderror}</p>
+                }
               </div>
 
-
-              <div onClick={handleSignUp} className='pt-10 pb-[16px]'>
+              <div onClick={handleSignUp} className='pt-10 pb-4'>
                 <Button className='w-full' text="Create Account" />
               </div>
 
-              <Flex className='relative w-[full] border border-[#CCCCCC] justify-center py-[16px] px-[86px]'>
-                <FcGoogle className='absolute text-xl top-[19px] left-[90px]' />
-                <p className='text-base font-normal font-pop pl-[16px]'>Sign up with Google</p>
-              </Flex>
-              <Flex className='justify-center pt-[32px]'>
+              <div onClick={handleGoogle}>
+                <Flex className='relative w-[full] border border-[#CCCCCC] justify-center py-[16px] px-[86px]'>
+                  <FcGoogle className='absolute text-xl top-[19px] left-[90px]' />
+                  <p className='text-base font-normal font-pop pl-[16px]'>Sign up with Google</p>
+                </Flex>
+              </div>
+              <Flex className='justify-center pt-8'>
                 <p className='text-base text-[#4D4D4D] font-pop font-normal'>Already have account?</p>
                 <div className='pl-4'>
                   <Link to='/login'><p className='text-base text-[#4D4D4D] font-medium font-pop border-0 border-b'>Log in</p></Link>
@@ -111,10 +210,12 @@ const Signup = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="dark"
+        theme="light"
 
       />
     </section>
+
+    // alifhasanredoy
   )
 }
 
