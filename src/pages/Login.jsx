@@ -7,37 +7,66 @@ import Button from '../components/Button'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { ToastContainer, toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom'
+import { FiEye, FiEyeOff } from 'react-icons/fi'
 
 
 const Login = () => {
 
-
   const auth = getAuth();
-  let [email, setEmail] = useState()
-  let [password, setPassword] = useState()
+  let [email, setEmail] = useState("")
+  let [password, setPassword] = useState("")
+  let [eye, setEye] = useState(false)
+  let [emailerror, setEmailError] = useState("")
+  let [passworderror, setPasswordError] = useState("")
+
 
   let navigate = useNavigate()
 
+  let handleEye = () => {
+    setEye(!eye)
+
+  }
+  let handleEmail = (e) => {
+    setEmail(e.target.value)
+    setEmailError("")
+  }
+  let handlePassword = (e) => {
+    setPassword(e.target.value)
+    setPasswordError("")
+  }
+
 
   let handleLogin = () => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        toast.success("Login Successful")
-        setTimeout(() => {
-          navigate("/")
+    if (!email) {
+      setEmailError("Please Enter your Email or phone number ")
+    }
 
-        }, 1000)
+    if (!password) {
+      setPasswordError("Please Enter your Password");
 
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        console.log(errorCode);
-        if (errorCode.includes("auth/invalid-credential")) {
-          toast.error("Invalid email or password")
-        }
+    }
+
+    if (email && password) {
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          toast.success("Login Successful")
+          setTimeout(() => {
+            navigate("/")
+
+          }, 1000)
+
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          console.log(errorCode);
+          if (errorCode.includes("auth/invalid-credential")) {
+            toast.error("Invalid email or password")
+          }
 
 
-      });
+        });
+
+    }
 
 
   }
@@ -54,9 +83,36 @@ const Login = () => {
               <h2 className='text-4xl text-black font-inter font-medium pb-[24px]'>Log in to Exclusive</h2>
               <h3 className='text-base text-black font-normal font-pop pb-[48px]'>Enter your details below</h3>
               <div className='pb-[40px]'>
-                <input onChange={(e) => setEmail(e.target.value)} type="text" placeholder='Email or Phone Number' className='w-full border-0 border-b border-black py-2 placeholder:text-[18px] font-pop font-normal focus:outline-none' />
+                <div className='pb-10 '>
+                  <input onChange={handleEmail} type="text" placeholder='Email or Phone Number' className='w-full border-0 border-b border-black py-2 placeholder:text-[18px] font-pop font-normal focus:outline-none ' />
+                  {
+                    emailerror && <p className='bg-red-500 text-white py-1 px-2 rounded-md mt-2 '>{emailerror}</p>
+                  }
+
+                </div>
               </div>
-                 <input onChange={(e)=>setPassword(e.target.value)} type="password" placeholder='Password' className='w-full border-0 border-b border-black py-2 placeholder:text-[18px] font-pop font-normal focus:outline-none' />
+              <div className='pb-10'>
+                <div className='relative'>
+                  <input
+                    onChange={handlePassword}
+                    type={eye ? "text" : "password"}
+                    placeholder='Password'
+                    className='w-full border-0 border-b border-black py-2 placeholder:text-[18px] font-pop font-normal focus:outline-none'
+                  />
+                  <div
+                    onClick={handleEye}
+                    className='absolute top-1/2 -translate-y-1/2 right-0 cursor-pointer'
+                  >
+                    {eye ? <FiEye /> : <FiEyeOff />}
+                  </div>
+                </div>
+
+                {passworderror && (
+                  <p className='bg-red-500 text-white py-1 px-2 rounded-md mt-2'>
+                    {passworderror}
+                  </p>
+                )}
+              </div>
 
               <Flex className='items-center pt-[40px]'>
                 <div onClick={handleLogin}>

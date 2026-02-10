@@ -4,7 +4,7 @@ import Flex from '../components/Flex'
 import Image from '../components/Image'
 import login from '../assets/login.png'
 import Button from '../components/Button'
-import googleicon from '../assets/googleicon.png'
+
 import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 import { ToastContainer, toast } from 'react-toastify';
