@@ -49,11 +49,19 @@ const Login = () => {
     if (email && password) {
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          toast.success("Login Successful")
-          setTimeout(() => {
-            navigate("/")
+          console.log(userCredential.user.emailVerified);
 
-          }, 1000)
+          if(userCredential.user.emailVerified){
+            toast.success("Login Successful")
+            setTimeout(() => {
+              navigate("/")
+
+            }, 1000)
+
+          }else{
+            toast.error("Verify your email")
+          }
+          
 
         })
         .catch((error) => {

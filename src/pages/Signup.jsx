@@ -5,7 +5,7 @@ import Image from '../components/Image'
 import login from '../assets/login.png'
 import Button from '../components/Button'
 
-import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, sendEmailVerification } from "firebase/auth";
 
 import { ToastContainer, toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom'
@@ -82,7 +82,7 @@ const Signup = () => {
       setPasswordError("Enter atleast one speciel character");
 
     } else if (!min.test(password)) {
-      setPasswordError("Password must be at least 8 characters long")
+      setPasswordError("Password must be 8 characters long")
     }
 
 
@@ -92,7 +92,12 @@ const Signup = () => {
 
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          toast.success("Registration Successful");
+
+          sendEmailVerification(auth.currentUser)
+
+
+          toast.success("Account created! Check your email to verify your account.");
+
 
 
         })
@@ -156,9 +161,9 @@ const Signup = () => {
                 }
 
               </div>
-             
-              <div className='pb-10'> 
-                <div className='relative'> 
+
+              <div className='pb-10'>
+                <div className='relative'>
                   <input
                     onChange={handlePassword}
                     type={eye ? "text" : "password"}
@@ -172,14 +177,14 @@ const Signup = () => {
                     {eye ? <FiEye /> : <FiEyeOff />}
                   </div>
                 </div>
-               
+
                 {passworderror && (
                   <p className='bg-red-500 text-white py-1 px-2 rounded-md mt-2'>
                     {passworderror}
                   </p>
                 )}
               </div>
-             
+
 
               <div onClick={handleSignUp} className='pt-10 pb-4'>
                 <Button className='w-full' text="Create Account" />
@@ -220,7 +225,7 @@ const Signup = () => {
       />
     </section>
 
-    // alifhasanredoy
+
   )
 }
 
