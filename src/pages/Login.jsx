@@ -92,24 +92,40 @@ const Login = () => {
 
   let handleSendEmail = () => {
 
+    if (!email) {
+      toast.error("Please enter your email first");
+      return;
+    }
+
     sendPasswordResetEmail(auth, email)
       .then(() => {
-
-        toast.success("We've sent a password reset link to your email");
-        setPopup(false)
-        
-       
+        toast.success("Password reset link sent to your email");
+        setTimeout(() => {
+          setPopup(false);
+        }, 1500);
+        setEmail("");
       })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        
+      .catch(() => {
+        toast.error("Failed to send reset email");
       });
 
   }
 
+
   return (
     <>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       {
         popup
           ? <section>
@@ -120,7 +136,13 @@ const Login = () => {
                   <label className='text-2xl font-pop font-normal' htmlFor="">Enter your email to reset password:
                     <br />
 
-                    <input type="text" className='px-3 w-full border-0 border-b border-black py-2 placeholder:text-base font-pop font-normal focus:outline-none' />
+                    <input
+                      type="text"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className='px-3 w-full border-0 border-b border-black py-2 placeholder:text-base font-pop font-normal focus:outline-none'
+                    />
+
                   </label>
                   <div className='mt-5'>
 
@@ -196,19 +218,7 @@ const Login = () => {
                 </div>
               </Flex>
             </Container>
-            <ToastContainer
-              position="top-center"
-              autoClose={5000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick={false}
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              theme="light"
 
-            />
           </section>
       }
 
