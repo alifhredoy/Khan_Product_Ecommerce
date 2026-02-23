@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 import Container from '../components/Container'
 import SubHeading from '../components/SubHeading'
 import Heading from '../components/Heading'
@@ -15,7 +15,12 @@ import NextArrow from '../components/NextArrow'
 import PrevArrow from '../components/PrevArrow'
 
 
+
 const TodayProducts = () => {
+  let [show, setShow] = useState(0)
+  let [Apidata, setApiData] = useState([])
+
+
   var settings = {
     arrows: true,
     infinite: true,
@@ -25,6 +30,12 @@ const TodayProducts = () => {
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />
   };
+  useEffect(() => {
+    fetch('https://dummyjson.com/products')
+      .then((res) => res.json())
+      .then((data) => setApiData(data.products))
+
+  }, [])
   return (
     <section className='mb-20 '>
       <Container>
@@ -32,30 +43,46 @@ const TodayProducts = () => {
           <SubHeading text="Today’s" />
           <Heading className='pt-6 pb-8' text="Flash Sales" />
           <Slider {...settings}>
-            <div>
-              <Card image={productone} title='HAVIT HV-G92 Gamepad' saleprice='120' regularprice='160' badge='-40%' />
-            </div>
-            <div>
-              <Card image={producttwo} title='AK-900 Wired Keyboard' saleprice='960' regularprice='1160' badge='-35%'/>
-            </div>
-            <div>
-              <Card image={productthree} title='IPS LCD Gaming Monitor' saleprice='370' regularprice='400' badge='-30%'/>
-            </div>
-            <div>
-              <Card image={productfour} title='S-Series Comfort Chair ' saleprice='375' regularprice='400' badge='-25%'/>
-            </div>
-            <div>
-              <Card image={producttwo} title='AK-900 Wired Keyboard' saleprice='960' regularprice='1160' badge='-35%'/>
-            </div>
+            {
+              Apidata.map(item => (
+                <div>
+                  <Card
+                    image={item.thumbnail}
+                    title={item.title}
+                    saleprice="300"
+                    regularprice="200"
+                    badge="new"
+                  />
+                </div>
 
 
-
-
-
+              ))
+            }
           </Slider>
-          <div className='text-center mt-[60px]'>
-            <Button text="View All Products" />
+          <div className="flex flex-wrap gap-4">
+            {
+              Apidata.slice(0, show).map(item => (
+                <div>
+                  <Card
+                    image={item.thumbnail}
+                    title={item.title}
+                    saleprice="300"
+                    regularprice="200"
+                    badge={"new"}
+                  />
+                </div>
+
+              ))
+
+            }
+
           </div>
+          {
+            show < Apidata.length ? <div onClick={() => setShow(show + 4)} className="text-center mt-[60px]">
+              <Button text="Load More Product" />
+            </div>
+              : <p className="text-center text-3xl text-red-500">No More Products</p>
+          }
         </div>
       </Container>
     </section>
