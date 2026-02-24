@@ -40,20 +40,20 @@ const BestProducts = () => {
                     </div>
 
                     {
-                        !viewAllClicked && (
-                            <div onClick={handleViewAll}>
-                                <Button text="View All" />
-                            </div>
-                        )
+                        !viewAllClicked &&
+                        <div onClick={handleViewAll}>
+                            <Button text="View All" />
+                        </div>
                     }
 
                 </Flex>
 
                 <Flex className='justify-between flex-wrap gap-y-10'>
                     <div className="flex flex-wrap gap-4">
+
                         {
                             Apidata.slice(0, show).map(item => (
-                                <div key={item.id}>
+                                <div>
                                     <CardBest
                                         image={item.thumbnail}
                                         title={item.title}
@@ -63,25 +63,24 @@ const BestProducts = () => {
                                 </div>
                             ))
                         }
+
                     </div>
                 </Flex>
 
                 {
-                    viewAllClicked && (
-                        <div className="text-center mt-20">
-                            {
-                                show < Apidata.length ? (
-                                    <div onClick={handleLoadMore}>
-                                        <Button text="Load More Products" />
-                                    </div>
-                                ) : (
-                                    <p className="text-3xl text-red-500">
-                                        No More Products
-                                    </p>
-                                )
-                            }
-                        </div>
-                    )
+                    viewAllClicked &&
+                    <div className="text-center mt-10">
+                        {
+                            show < Apidata.length ?
+                                <div onClick={handleLoadMore}>
+                                    <Button text="Load More Products" />
+                                </div>
+                                :
+                                <p className="text-3xl text-red-500">
+                                    No More Products
+                                </p>
+                        }
+                    </div>
                 }
 
             </Container>
