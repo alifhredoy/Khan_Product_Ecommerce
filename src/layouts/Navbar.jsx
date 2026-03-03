@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Container from '../components/Container'
 import Flex from '../components/Flex'
 import Image from '../components/Image'
@@ -9,11 +9,25 @@ import { IoIosHeartEmpty } from "react-icons/io";
 import { IoCartOutline } from "react-icons/io5";
 import { Link } from 'react-router-dom'
 import { TbUser } from 'react-icons/tb'
+import { useDispatch } from 'react-redux'
+import { addbreadcrumb } from '../slices/breadCrumbSlice'
 
 
 
 
 const Navbar = () => {
+
+    let [dropdown, setDropdown] = useState(false)
+
+    let dispatch = useDispatch()
+
+    let handleBreadCrumb = (name) => {
+        dispatch(addbreadcrumb(name))
+
+
+    }
+
+
     return (
         <nav className='pt-10 pb-4 border border-[#9a9a9a3d]'>
             <Container>
@@ -22,23 +36,37 @@ const Navbar = () => {
                         <Image src={Logo} />
                     </div>
                     <div className='w-5/12 '>
-                        <ul className='flex gap-x-12'>
-                            <Link to='/'><ListItem text="Home" /></Link>
-                            <ListItem text="Contact" />
-                            <Link to='/about'><ListItem text="About" /></Link>
-                            <Link to='/signup'><ListItem text="Sign Up" /></Link>
+                        <ul className='flex gap-x-12 cursor-pointer'>
+                            <Link onClick={() => handleBreadCrumb("Home")} to='/'><ListItem text="Home" /></Link>
+                            <Link onClick={() => handleBreadCrumb("Cart")} to='/cart'><ListItem text="Cart" /></Link>
+                            <Link onClick={() => handleBreadCrumb("About")} to='/about'><ListItem text="About" /></Link>
+                            <Link onClick={() => handleBreadCrumb("Login")} to='/login'><ListItem text="Login" /></Link>
+                            <Link onClick={() => handleBreadCrumb("Sign Up")} to='/signup'><ListItem text="Sign Up" /></Link>
+
                         </ul>
                     </div>
-                    <div className='w-4/12 pl-10'>
+                    <div className='w-4/12 pl-10 relative'>
                         <Flex className="items-center justify-between">
                             <div className='relative w-[243px]  bg-input'>
                                 <input className='w-full py-1 pl-4 pr-7 placeholder:text-xs font-normal' type="text" placeholder='What are you looking for?' /><IoSearchOutline className='absolute top-[9px] right-2 text-base' />
                             </div>
-                            <IoIosHeartEmpty className='text-xl'/>
-                            <IoCartOutline className='text-xl'/>
-                            <div className='w-[25px] h-[25px] bg-red-500 rounded-full flex justify-center items-center'>
-                                <TbUser className=' text-white'/>
+                            <IoIosHeartEmpty className='text-xl' />
+                            <Link to='/cart'><IoCartOutline className='text-xl' /></Link>
+                            <div onClick={() => setDropdown(!dropdown)} className='w-[25px] h-[25px] bg-[#DB4444] rounded-full flex justify-center items-center'>
+                                <TbUser className='text-white' />
                             </div>
+                            {
+                                dropdown &&
+                                <div className='z-100 w-[200px] py-[20px] absolute top-full right-5 bg-red-500'>
+                                    <ul>
+                                        <li>home</li>
+                                        <li>home</li>
+                                        <li>home</li>
+                                        <li>home</li>
+                                        <li>home</li>
+                                    </ul>
+                                </div>
+                            }
                         </Flex>
 
 
