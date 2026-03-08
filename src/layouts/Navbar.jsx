@@ -41,7 +41,7 @@ const Navbar = () => {
                             <Link onClick={() => handleBreadCrumb("Contact")} to='/contact'><ListItem text="Contact" /></Link>
                             <Link onClick={() => handleBreadCrumb("About")} to='/about'><ListItem text="About" /></Link>
                             <Link onClick={() => handleBreadCrumb("Sign Up")} to='/signup'><ListItem text="Sign Up" /></Link>
-
+                            
                         </ul>
                     </div>
                     <div className='w-4/12 pl-10 relative'>

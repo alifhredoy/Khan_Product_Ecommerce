@@ -34,18 +34,18 @@ const Products = () => {
             <ul className="flex flex-col gap-y-4 pt-4">
               <Flex className='items-center gap-x-2.5'>
 
-                <div className='w-[12px] h-[12px] bg-red-500 rounded-full'></div>
+                <div className='w-[12px] h-[12px] bg-black rounded-full'></div>
                 <li>Color 1</li>
               </Flex>
               <Flex className='items-center gap-x-2.5'>
 
                 <div className='w-[12px] h-[12px] bg-red-500 rounded-full'></div>
-                <li>Color 1</li>
+                <li>Color 2</li>
               </Flex>
               <Flex className='items-center gap-x-2.5'>
 
-                <div className='w-[12px] h-[12px] bg-red-500 rounded-full'></div>
-                <li>Color 1</li>
+                <div className='w-[12px] h-[12px] bg-green-500 rounded-full'></div>
+                <li>Color 3</li>
               </Flex>
 
 
