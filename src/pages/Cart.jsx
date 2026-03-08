@@ -9,16 +9,16 @@ import Button from "../components/Button";
 import { useSelector } from "react-redux";
 
 const Cart = () => {
-  let data=useSelector((state)=>state.breadcrumb.previousValue)
- 
-  
-  
-  
+  let data = useSelector((state) => state.breadcrumb.previousValue)
+
+
+
+
   return (
     <Container>
       <section className="font-pop">
-        <p className="pt-6"> <Link to={data=="Home"? "/":`/${data}`}>{data}</Link> / Cart</p>
-        
+        <p className="pt-6"> <Link to={data == "Home" ? "/" : `/${data}`}>{data}</Link> / cart</p>
+
         <div className="lg:mt-20 lg:mb-35">
           <div className="flex justify-between py-6 px-10 shadow-[0_1px_13px_rgba(0,0,0,0.05)] mb-10">
             <p>Product</p>
@@ -40,15 +40,15 @@ const Cart = () => {
           />
           <Flex className="justify-between pb-20">
             <Button text="Return To Shop"
-              className="text-black! border! border-[#00000080]! bg-transparent hover:bg-secondary! hover:border-transparent! hover:text-white! duration-300"/>
-              <Button text="Update Cart"
-              className="text-black! border! border-[#00000080]! bg-transparent hover:bg-secondary! hover:border-transparent! hover:text-white! duration-300"/>
+              className="text-black! border! border-[#00000080]! bg-transparent hover:bg-secondary! hover:border-transparent! hover:text-white! duration-300" />
+            <Button text="Update Cart"
+              className="text-black! border! border-[#00000080]! bg-transparent hover:bg-secondary! hover:border-transparent! hover:text-white! duration-300" />
           </Flex>
 
           <div className="grid grid-cols-1 lg:grid-cols-2">
             <div className="items-start">
-              <input type="text" placeholder="Coupon Code" className="py-4 pl-6 pr-20 outline-0 border border-black rounded-sm mr-4"/>
-              <Button text="Apply Coupon" className="hover:bg-red-600! text-white! border-transparent"/>
+              <input type="text" placeholder="Coupon Code" className="py-4 pl-6 pr-20 outline-0 border border-black rounded-sm mr-4" />
+              <Button text="Apply Coupon" className="hover:bg-red-600! text-white! border-transparent" />
             </div>
             <div className="justify-self-end">
               <div className="w-[470px] border border-black rounded-sm py-8 px-4">
@@ -65,7 +65,7 @@ const Cart = () => {
                   <span>Total:</span>
                   <span className="justify-self-end">$1750</span>
                 </div>
-                
+
                 <div className="text-center"><Button className="hover:bg-red-600! text-white! border-transparent" text="Procees to checkout" /></div>
               </div>
             </div>

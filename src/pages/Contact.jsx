@@ -15,7 +15,7 @@ const Contact = () => {
         <section>
 
           <div className='mt-[80px] mb-[120px] cursor-pointer'>
-            <p className="pt-6"> <Link to={data == "Home" ? "/" : `/${data}`}>{data}</Link> / Contact</p>
+            <p className="pt-6"> <Link to={data == "Home" ? "/" : `/${data}`}>{data}</Link> / contact</p>
           </div>
 
 
