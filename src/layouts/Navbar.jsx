@@ -38,9 +38,8 @@ const Navbar = () => {
                     <div className='w-5/12 '>
                         <ul className='flex gap-x-12 cursor-pointer'>
                             <Link onClick={() => handleBreadCrumb("Home")} to='/'><ListItem text="Home" /></Link>
-                            <Link onClick={() => handleBreadCrumb("Cart")} to='/cart'><ListItem text="Cart" /></Link>
+                            <Link onClick={() => handleBreadCrumb("Contact")} to='/contact'><ListItem text="Contact" /></Link>
                             <Link onClick={() => handleBreadCrumb("About")} to='/about'><ListItem text="About" /></Link>
-                            <Link onClick={() => handleBreadCrumb("Login")} to='/login'><ListItem text="Login" /></Link>
                             <Link onClick={() => handleBreadCrumb("Sign Up")} to='/signup'><ListItem text="Sign Up" /></Link>
 
                         </ul>

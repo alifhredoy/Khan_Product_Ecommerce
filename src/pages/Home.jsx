@@ -8,26 +8,7 @@ import ExploreProducts from '../layouts/ExploreProducts'
 import NewArrival from '../layouts/NewArrival'
 import Support from '../layouts/Support'
 
-
-
-
-
-import { useDispatch } from "react-redux"
-import { addbreadcrumb } from "../slices/breadCrumbSlice"
-
 const Home = () => {
-
-const dispatch = useDispatch()
-useEffect(()=>{
-  dispatch(addbreadcrumb("Home"))
-},[])
-
-
-
-
-
-
-
 
 
   return (
