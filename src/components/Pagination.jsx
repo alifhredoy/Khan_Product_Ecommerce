@@ -67,6 +67,9 @@ function Pagination({ itemsPerPage }) {
                 pageCount={pageCount}
                 previousLabel=""
                 renderOnZeroPageCount={null}
+                containerClassName="flex mt-10"
+                pageClassName="bg-black w-[55px] h-[30px] text-white inline-block mr-5 "
+                pageLinkClassName="flex items-center justify-center h-full"
             />
         </>
     );
