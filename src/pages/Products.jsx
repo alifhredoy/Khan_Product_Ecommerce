@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Flex from '../components/Flex'
 import Container from '../components/Container'
 import { useSelector } from 'react-redux'
@@ -9,6 +9,12 @@ import Pagination from '../components/Pagination'
 
 
 const Products = () => {
+  let [show, setShow] = useState(6)
+  let handleSelect = (e) => {
+    setShow(e.target.value);
+
+
+  }
   let data = useSelector((state) => state.breadcrumb.previousValue)
   return (
     <section className='pt-20 pb-[120px]'>
@@ -56,7 +62,18 @@ const Products = () => {
           </div>
           <div className='w-9/12 '>
 
-            <Pagination itemsPerPage={9} />
+            <div className='flex justify-end items-center mb-8'>
+              <label htmlFor="">Show :</label>
+              <select onChange={handleSelect} className='ml-4 py-1 px-5 border border-black rounded-md '>
+                <option value="6">6</option>
+                <option value="9">9</option>
+                <option value="12">12</option>
+                <option value="15">15</option>
+
+              </select>
+            </div>
+
+            <Pagination itemsPerPage={show == 6 ? 6 : show == 9 ? 9 : show == 12 ? 12 : 15} />
 
 
           </div>
