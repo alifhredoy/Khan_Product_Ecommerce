@@ -52,6 +52,7 @@ const TodayProducts = () => {
                     saleprice="300"
                     regularprice="200"
                     badge="new"
+                    typeforbadge={true}
                   />
                 </div>
 
