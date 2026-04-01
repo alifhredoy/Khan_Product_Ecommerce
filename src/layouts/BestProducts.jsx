@@ -55,6 +55,7 @@ const BestProducts = () => {
                             Apidata.slice(0, show).map(item => (
                                 <div>
                                     <CardBest
+                                        id={item.id}
                                         image={item.thumbnail}
                                         title={item.title}
                                         saleprice="280"

@@ -13,6 +13,7 @@ import Signup from './pages/Signup';
 import Error from './pages/Error';
 import Cart from './pages/Cart';
 import Contact from './pages/Contact';
+import ProductDetails from './pages/ProductDetails';
 
 
 const router = createBrowserRouter(
@@ -21,6 +22,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<RootLayout />}>
         <Route path="/" element={<Home />}></Route>
         <Route path="/products" element={<Products />}></Route>
+        <Route path="/productdetails/:id" element={<ProductDetails />} ></Route>
         <Route path="/contact" element={<Contact />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>

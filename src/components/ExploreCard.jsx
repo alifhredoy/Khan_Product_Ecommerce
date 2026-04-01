@@ -6,15 +6,18 @@ import { FaRegHeart } from "react-icons/fa";
 
 import { LuEye } from "react-icons/lu";
 import { FaStar } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 
 
 
-const ExploreCard = ({ image, title, saleprice, className }) => {
+const ExploreCard = ({id, image, title, saleprice, className }) => {
     return (
         <div className={`w-[270px] pb-[60px] group ${className}`}>
             <Flex className='relative overflow-hidden w-full h-[250px] justify-center items-center  bg-[#F5F5F5] rounded-[4px]'>
-                <Image src={image} alt="product" />
+                <Link to={`/productdetails/${id}`}>
+                    <Image src={image} alt="Product" />
+                </Link>
 
 
                 <li className='absolute top-4 right-3 list-none bg-white w-[34px] h-[34px] rounded-full flex items-center justify-center'><FaRegHeart className='text-base' /></li>

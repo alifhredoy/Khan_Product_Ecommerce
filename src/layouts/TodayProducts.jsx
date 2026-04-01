@@ -47,6 +47,7 @@ const TodayProducts = () => {
               Apidata.map(item => (
                 <div>
                   <Card
+                    id={item.id}
                     image={item.thumbnail}
                     title={item.title}
                     saleprice="300"
@@ -65,6 +66,7 @@ const TodayProducts = () => {
               Apidata.slice(0, show).map(item => (
                 <div>
                   <Card
+                    id={item.id}
                     image={item.thumbnail}
                     title={item.title}
                     saleprice="300"
