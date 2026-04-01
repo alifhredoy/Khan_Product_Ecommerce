@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
 
 
-const ExploreCard = ({id, image, title, saleprice, className }) => {
+const ExploreCard = ({ id, image, title, saleprice, className }) => {
     return (
         <div className={`w-[270px] pb-[60px] group ${className}`}>
             <Flex className='relative overflow-hidden w-full h-[250px] justify-center items-center  bg-[#F5F5F5] rounded-[4px]'>
@@ -29,7 +29,10 @@ const ExploreCard = ({id, image, title, saleprice, className }) => {
             </Flex>
 
             <div>
-                <h4 className='text-base text-black font-medium font-pop pt-4 pb-2'>{title}</h4>
+                <Link to={`/productdetails/${id}`}>
+                    <h4 className='text-base text-black font-medium font-pop pt-4 pb-2'>{title}</h4>
+
+                </Link>
                 <Flex className="items-center pt-2 gap-x-2">
                     <p className='text-base text-[#DB4444] font-medium font-pop'>${saleprice}</p>
                     <ul className='flex gap-x-1 !p-0'>

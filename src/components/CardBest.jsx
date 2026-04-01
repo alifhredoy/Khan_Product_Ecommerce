@@ -29,7 +29,10 @@ const CardBest = ({id, image, title, saleprice, regularprice, className }) => {
             </Flex>
 
             <div>
-                <h4 className='text-base text-black font-medium font-pop pt-4 pb-2'>{title}</h4>
+                <Link to={`/productdetails/${id}`}>
+                           <h4 className='text-base text-black font-medium font-pop pt-4 pb-2'>{title}</h4>
+                          
+                          </Link>
                 <p className='text-base text-[#DB4444] font-medium font-pop'>${saleprice} <span className='text-[#00000080] pl-2'><del className='text-[#00000080]'> ${regularprice}</del></span></p>
                 <Flex className="items-center pt-2 gap-x-2">
                     <ul className='flex gap-x-1 !p-0'>
