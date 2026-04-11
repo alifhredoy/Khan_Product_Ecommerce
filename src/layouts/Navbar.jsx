@@ -11,9 +11,11 @@ import { MdAppRegistration } from "react-icons/md";
 import { IoCartOutline } from "react-icons/io5";
 import { Link } from 'react-router-dom'
 import { TbUser } from 'react-icons/tb'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addbreadcrumb } from '../slices/breadCrumbSlice'
 import ProductOne from '../assets/productone.png'
+import { decrementaddtocart, incrementaddtocart } from '../slices/addToCartSlice'
+
 
 
 
@@ -23,6 +25,10 @@ const Navbar = () => {
     let [dropdown, setDropdown] = useState(false)
     let [cartdropdown, setCartDropdown] = useState(false)
 
+    let data = useSelector(state => state.cartitem.cartvalue)
+    console.log(data);
+
+
     let dispatch = useDispatch()
 
     let handleBreadCrumb = (name) => {
@@ -30,6 +36,17 @@ const Navbar = () => {
 
 
     }
+    let handleIncrement =(item)=>{
+        
+        dispatch(incrementaddtocart(item))
+        
+    }
+    let handleDecrement =(item)=>{
+        
+        dispatch(decrementaddtocart(item))
+        
+    }
+   
 
 
     return (
@@ -70,110 +87,21 @@ const Navbar = () => {
                                         <li>Quantity:</li>
                                         <li>SubTotal:</li>
                                     </ul>
-                                    <ul className='border-b border-black pb-4 flex justify-between items-center my-5 mx-5 text-black text-xs font-normal font-pop'>
-                                        <li><Image className='w-[35px] h-[35px]' src={ProductOne} /></li>
-                                        <li>Product One</li>
-                                        <li className='border border-black py-1 px-3'>
-                                            <button className='mr-2'>-</button>
-                                            <button>1</button>
-                                            <button className='ml-2'>+</button>
-                                        </li>
-                                        <li>60$</li>
-                                    </ul>
-                                    <ul className='border-b border-black pb-4 flex justify-between items-center my-5 mx-5 text-black text-xs font-normal font-pop'>
-                                        <li><Image className='w-[35px] h-[35px]' src={ProductOne} /></li>
-                                        <li>Product One</li>
-                                        <li className='border border-black py-1 px-3'>
-                                            <button className='mr-2'>-</button>
-                                            <button>1</button>
-                                            <button className='ml-2'>+</button>
-                                        </li>
-                                        <li>60$</li>
-                                    </ul>
-                                    <ul className='border-b border-black pb-4 flex justify-between items-center my-5 mx-5 text-black text-xs font-normal font-pop'>
-                                        <li><Image className='w-[35px] h-[35px]' src={ProductOne} /></li>
-                                        <li>Product One</li>
-                                        <li className='border border-black py-1 px-3'>
-                                            <button className='mr-2'>-</button>
-                                            <button>1</button>
-                                            <button className='ml-2'>+</button>
-                                        </li>
-                                        <li>60$</li>
-                                    </ul>
-                                    <ul className='border-b border-black pb-4 flex justify-between items-center my-5 mx-5 text-black text-xs font-normal font-pop'>
-                                        <li><Image className='w-[35px] h-[35px]' src={ProductOne} /></li>
-                                        <li>Product One</li>
-                                        <li className='border border-black py-1 px-3'>
-                                            <button className='mr-2'>-</button>
-                                            <button>1</button>
-                                            <button className='ml-2'>+</button>
-                                        </li>
-                                        <li>60$</li>
-                                    </ul>
-                                    <ul className='border-b border-black pb-4 flex justify-between items-center my-5 mx-5 text-black text-xs font-normal font-pop'>
-                                        <li><Image className='w-[35px] h-[35px]' src={ProductOne} /></li>
-                                        <li>Product One</li>
-                                        <li className='border border-black py-1 px-3'>
-                                            <button className='mr-2'>-</button>
-                                            <button>1</button>
-                                            <button className='ml-2'>+</button>
-                                        </li>
-                                        <li>60$</li>
-                                    </ul>
-                                    <ul className='border-b border-black pb-4 flex justify-between items-center my-5 mx-5 text-black text-xs font-normal font-pop'>
-                                        <li><Image className='w-[35px] h-[35px]' src={ProductOne} /></li>
-                                        <li>Product One</li>
-                                        <li className='border border-black py-1 px-3'>
-                                            <button className='mr-2'>-</button>
-                                            <button>1</button>
-                                            <button className='ml-2'>+</button>
-                                        </li>
-                                        <li>60$</li>
-                                    </ul>
+                                    {
+                                        data.map(item => (
+                                            <ul className='border-b border-black pb-4 flex justify-between items-center my-5 mx-5 text-black text-xs font-normal font-pop'>
+                                                <li><Image className='w-[35px] h-[35px]' src={item.image} /></li>
+                                                <li>{item.title.substring(0,10)}...</li>
+                                                <li className='border border-black py-1 px-3'>
+                                                    <button onClick={()=>handleDecrement(item)} className='mr-2'>-</button>
+                                                    <button>{item.quantity}</button>
+                                                    <button onClick={()=>handleIncrement(item)} className='ml-2'>+</button>
+                                                </li>
+                                                <li>{item.price*item.quantity}$</li>
+                                            </ul>
+                                        ))
+                                    }
 
-                                    <ul className='border-b border-black pb-4 flex justify-between items-center my-5 mx-5 text-black text-xs font-normal font-pop'>
-                                        <li><Image className='w-[35px] h-[35px]' src={ProductOne} /></li>
-                                        <li>Product One</li>
-                                        <li className='border border-black py-1 px-3'>
-                                            <button className='mr-2'>-</button>
-                                            <button>1</button>
-                                            <button className='ml-2'>+</button>
-                                        </li>
-                                        <li>60$</li>
-                                    </ul>
-
-                                    <ul className='border-b border-black pb-4 flex justify-between items-center my-5 mx-5 text-black text-xs font-normal font-pop'>
-                                        <li><Image className='w-[35px] h-[35px]' src={ProductOne} /></li>
-                                        <li>Product One</li>
-                                        <li className='border border-black py-1 px-3'>
-                                            <button className='mr-2'>-</button>
-                                            <button>1</button>
-                                            <button className='ml-2'>+</button>
-                                        </li>
-                                        <li>60$</li>
-                                    </ul>
-
-                                    <ul className='border-b border-black pb-4 flex justify-between items-center my-5 mx-5 text-black text-xs font-normal font-pop'>
-                                        <li><Image className='w-[35px] h-[35px]' src={ProductOne} /></li>
-                                        <li>Product One</li>
-                                        <li className='border border-black py-1 px-3'>
-                                            <button className='mr-2'>-</button>
-                                            <button>1</button>
-                                            <button className='ml-2'>+</button>
-                                        </li>
-                                        <li>60$</li>
-                                    </ul>
-
-                                    <ul className='border-b border-black pb-4 flex justify-between items-center my-5 mx-5 text-black text-xs font-normal font-pop'>
-                                        <li><Image className='w-[35px] h-[35px]' src={ProductOne} /></li>
-                                        <li>Product One</li>
-                                        <li className='border border-black py-1 px-3'>
-                                            <button className='mr-2'>-</button>
-                                            <button>1</button>
-                                            <button className='ml-2'>+</button>
-                                        </li>
-                                        <li>60$</li>
-                                    </ul>
 
                                 </div>
                             }

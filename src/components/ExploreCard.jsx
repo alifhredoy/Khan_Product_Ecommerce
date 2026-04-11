@@ -7,11 +7,25 @@ import { FaRegHeart } from "react-icons/fa";
 import { LuEye } from "react-icons/lu";
 import { FaStar } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addtocart } from '../slices/addToCartSlice';
 
 
 
 
 const ExploreCard = ({ id, image, title, saleprice, className }) => {
+
+    let dispatch=useDispatch()
+
+     let handleAddToCart=()=>{
+        dispatch(addtocart({
+          title:title,
+          image:image,
+          price:saleprice,
+          quantity:1
+        }))
+        
+      }
     return (
         <div className={`w-[270px] pb-[60px] group ${className}`}>
             <Flex className='relative overflow-hidden w-full h-[250px] justify-center items-center  bg-[#F5F5F5] rounded-[4px]'>
@@ -22,7 +36,7 @@ const ExploreCard = ({ id, image, title, saleprice, className }) => {
 
                 <li className='absolute top-4 right-3 list-none bg-white w-[34px] h-[34px] rounded-full flex items-center justify-center'><FaRegHeart className='text-base' /></li>
                 <li className='absolute top-14 right-3 list-none bg-white w-[34px] h-[34px] rounded-full flex items-center justify-center'><LuEye className='text-base' /></li>
-                <div className='cursor-pointer bg-black py-2 w-full absolute -bottom-[40px] group-hover:bottom-0 duration-300 left-0 text-center rounded-b'>
+                <div onClick={handleAddToCart} className='cursor-pointer bg-black py-2 w-full absolute -bottom-[40px] group-hover:bottom-0 duration-300 left-0 text-center rounded-b'>
                     <p className='text-base text-white font-medium font-pop'>Add To Cart</p>
                 </div>
 
