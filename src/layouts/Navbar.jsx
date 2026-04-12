@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Container from '../components/Container'
 import Flex from '../components/Flex'
 import Image from '../components/Image'
@@ -25,6 +25,7 @@ const Navbar = () => {
     let [dropdown, setDropdown] = useState(false)
     let [cartdropdown, setCartDropdown] = useState(false)
 
+
     let data = useSelector(state => state.cartitem.cartvalue)
     console.log(data);
 
@@ -36,17 +37,28 @@ const Navbar = () => {
 
 
     }
-    let handleIncrement =(item)=>{
-        
+    let handleIncrement = (item) => {
+
         dispatch(incrementaddtocart(item))
-        
+
     }
-    let handleDecrement =(item)=>{
-        
+    let handleDecrement = (item) => {
+
         dispatch(decrementaddtocart(item))
-        
+
     }
-   
+
+
+    let total = 0
+    data.map(item => {
+        total += item.quantity * item.price
+
+
+    })
+    
+    
+
+
 
 
     return (
@@ -89,18 +101,20 @@ const Navbar = () => {
                                     </ul>
                                     {
                                         data.map(item => (
-                                            <ul className='border-b border-black pb-4 flex justify-between items-center my-5 mx-5 text-black text-xs font-normal font-pop'>
+                                            <ul key={item.id} className='border-b border-black pb-4 flex justify-between items-center my-5 mx-5 text-black text-xs font-normal font-pop'>
                                                 <li><Image className='w-[35px] h-[35px]' src={item.image} /></li>
-                                                <li>{item.title.substring(0,10)}...</li>
+                                                <li>{item.title.substring(0, 10)}...</li>
                                                 <li className='border border-black py-1 px-3'>
-                                                    <button onClick={()=>handleDecrement(item)} className='mr-2'>-</button>
+                                                    <button onClick={() => handleDecrement(item)} className='mr-2'>-</button>
                                                     <button>{item.quantity}</button>
-                                                    <button onClick={()=>handleIncrement(item)} className='ml-2'>+</button>
+                                                    <button onClick={() => handleIncrement(item)} className='ml-2'>+</button>
                                                 </li>
-                                                <li>{item.price*item.quantity}$</li>
+                                                <li>{item.price * item.quantity}$</li>
                                             </ul>
                                         ))
                                     }
+
+                                    <h1 className='absolute bottom-5 right-5 text-xl font-bold font-pop'>Total:{total}$</h1>
 
 
                                 </div>
