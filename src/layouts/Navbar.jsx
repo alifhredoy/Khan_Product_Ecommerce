@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Container from '../components/Container'
 import Flex from '../components/Flex'
+import Button from '../components/Button'
 import Image from '../components/Image'
 import Logo from '../assets/logo.png'
 import ListItem from '../components/ListItem'
@@ -49,8 +50,8 @@ const Navbar = () => {
 
     }
     let handleDelete = (item) => {
-    dispatch(deleteaddtocart(item));
-  };
+        dispatch(deleteaddtocart(item));
+    };
 
 
     let total = 0
@@ -128,6 +129,19 @@ const Navbar = () => {
                                     }
 
                                     <h1 className='absolute bottom-5 right-5 text-xl font-bold font-pop'>Total:{total}$</h1>
+
+                                    {data.length > 0 ?
+                                        <div className="flex gap-x-3 justify-center">
+                                            <Link to="/cart">
+                                                <Button className="!py-2 !px-8 text-sm" text="View Cart" />
+                                            </Link>
+                                            <Link to="/checkout">
+                                                <Button className="!py-2 !px-8 text-sm" text="Checkout" />
+                                            </Link>
+                                        </div>
+                                        :
+                                        <h1 className='text-center pt-10 text-2xl font-bold'>Cart is Empty</h1>
+                                    }
 
 
                                 </div>
