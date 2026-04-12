@@ -14,7 +14,8 @@ import { TbUser } from 'react-icons/tb'
 import { useDispatch, useSelector } from 'react-redux'
 import { addbreadcrumb } from '../slices/breadCrumbSlice'
 import ProductOne from '../assets/productone.png'
-import { decrementaddtocart, incrementaddtocart } from '../slices/addToCartSlice'
+import { decrementaddtocart, deleteaddtocart, incrementaddtocart } from '../slices/addToCartSlice'
+import { RxCross2 } from "react-icons/rx";
 
 
 
@@ -47,6 +48,9 @@ const Navbar = () => {
         dispatch(decrementaddtocart(item))
 
     }
+    let handleDelete = (item) => {
+    dispatch(deleteaddtocart(item));
+  };
 
 
     let total = 0
@@ -55,8 +59,8 @@ const Navbar = () => {
 
 
     })
-    
-    
+
+
 
 
 
@@ -93,7 +97,8 @@ const Navbar = () => {
                             {
                                 cartdropdown &&
                                 <div className='absolute top-12 left-0 z-50 w-[400px] h-[80vh] overflow-y-scroll bg-[#F0F0F0]'>
-                                    <ul className='border-b border-black pb-4 flex justify-between items-center my-5 mx-5 text-black text-sm font-semibold font-pop'>
+                                    <ul className='border-b border-black pb-4 flex justify-between items-center my-5 mx-5 text-black text-xs font-semibold font-pop'>
+                                        <li>Action:</li>
                                         <li>Image:</li>
                                         <li>Name:</li>
                                         <li>Quantity:</li>
@@ -102,6 +107,14 @@ const Navbar = () => {
                                     {
                                         data.map(item => (
                                             <ul key={item.id} className='border-b border-black pb-4 flex justify-between items-center my-5 mx-5 text-black text-xs font-normal font-pop'>
+                                                <li>
+                                                    <button
+                                                        onClick={() => handleDelete(item)}
+                                                        className="w-6 h-6 flex items-center justify-center rounded-md bg-gray-100 bg-red-500 hover:text-white transition"
+                                                    >
+                                                        <RxCross2 size={18} />
+                                                    </button>
+                                                </li>
                                                 <li><Image className='w-[35px] h-[35px]' src={item.image} /></li>
                                                 <li>{item.title.substring(0, 10)}...</li>
                                                 <li className='border border-black py-1 px-3'>
